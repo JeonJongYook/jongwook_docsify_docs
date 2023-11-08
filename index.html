@@ -9,14 +9,82 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
 </head>
 <body>
-  <div id="app"></div>
-  <script>
+<nav>
+  <a href="#/ko-kr/">KOR</a>
+  <a href="#/en-us/">ENGLISH</a>
+</nav>
+<div id="app">로딩중입니다</div>
+<script src="//unpkg.com/docsify-edit-on-github@1.0.1/index.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/zoom-image.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+<script>
     window.$docsify = {
-      name: '',
-      repo: ''
+      search: {
+        maxAge: 86400000, // Expiration time, the default one day
+        paths: [], // or 'auto'
+        // placeholder: 'Type to search',
+
+        // Localization
+        placeholder: {
+          '/en-us/': 'Type to search',
+          '/': '검색',
+        },
+
+        // noData: 'No Results!',
+
+        // Localization
+        noData: {
+          '/en-us/': 'No Results',
+          '/': '검색 결과를 찾을 수 업습니다.',
+        },
+
+        // Headline depth, 1 - 6
+        depth: 2,
+
+        hideOtherSidebarContent: false, // whether or not to hide other sidebar content
+
+        // To avoid search index collision
+        // between multiple websites under the same domain
+        namespace: 'website-1',
+
+        // Use different indexes for path prefixes (namespaces).
+        // NOTE: Only works in 'auto' mode.
+        //
+        pathNamespaces: ['/ko-kr', '/en-us'],
+        // pathNamespaces: /^(\/(ko-kr|en-us))?(\/(v1|v2))?/,
+      },
+
+      name: 'JeonJongWook Docs',
+      repo: 'https://github.com/JeonJongYook/jongwook_docsify_docs',
+      themeColor: '#3F51B5', <!-- Customize theme color -->
+      loadSidebar: true,
+      loadNavbar: true,
+      maxLevel: 2,  <!-- Maximum Table of content level. -->
+      subMaxLevel: 3,
+      logo: '/_media/icon.svg',  <!-- add logo -->
+      coverpage: true,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      disqus: 'jongwookdocs',
+      plugins: [
+        EditOnGithubPlugin.create(
+                'https://github.com/JeonJongYook/jongwook_docsify_docs/'
+        ),
+      ],
+      // search: 'auto', // default
+      pagination: {
+        previousText: 'Previous',
+        nextText: 'Next'
+      }
     }
-  </script>
-  <!-- Docsify v4 -->
-  <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+</script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+<!-- 코드 복사기능 -->
+<script src="//cdn.jsdelivr.net/npm/docsify-pagination/dist/docsify-pagination.min.js"></script>
+<!-- 댓글달기 -->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script>
 </body>
 </html>
