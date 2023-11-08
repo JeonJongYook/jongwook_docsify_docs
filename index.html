@@ -6,7 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/buble.css" />
+<!--  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/pure.css" />-->
+
+
 </head>
 <body>
 <nav>
@@ -73,11 +77,42 @@
         EditOnGithubPlugin.create(
                 'https://github.com/JeonJongYook/jongwook_docsify_docs/'
         ),
+        function pageFooter(hook, vm) {
+          var footer = [
+            '<hr/>',
+            '<footer>',
+            '<span><a href="https://github.com/JeonJongYook">JeonJongWook</a> &copy;2017.</span>',
+            '<span>Proudly published with <a href="https://github.com/JeonJongYook/jongwook_docsify_docs" target="_blank">docsify</a>.</span>',
+            '</footer>',
+          ].join('');
+
+          hook.afterEach(function (html) {
+            return html + footer;
+          });
+        },
+        function editButton(hook, vm) {
+          $docsify.formatUpdated = '{YYYY}/{MM}/{DD} {HH}:{mm}';
+
+          hook.beforeEach(function (html) {
+            var url =
+                    'https://github.com/JeonJongYook/jongwook_docsify_docs/blob/main/' +
+                    vm.route.file;
+            var editHtml = '[📝 파일 수정하기](' + url + ')\n';
+
+            return (
+                    editHtml +
+                    html +
+                    '\n----\n' +
+                    'Last modified ' +
+                    editHtml
+            );
+          });
+        },
       ],
       // search: 'auto', // default
       pagination: {
-        previousText: 'Previous',
-        nextText: 'Next'
+        previousText: '이전 페이지',
+        nextText: '다음 페이지'
       }
     }
 </script>
